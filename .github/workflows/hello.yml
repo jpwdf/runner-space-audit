@@ -15,7 +15,7 @@ jobs:
         run: dpkg -l
       
       - name: Find files
-        run: find / 2>/dev/null
+        run: find / 2>/dev/null || true
       
       - name: Disk usage
         run: df -h
