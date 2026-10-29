@@ -19,7 +19,26 @@ jobs:
       
       - name: Disk usage
         run: df -h
-      
+
+      - name: Remove unnecessary packages
+        run: |
+          sudo apt-get remove --purge -y \
+            azure-cli azure-vm-utils walinuxagent \
+            apache2 apache2-bin apache2-data apache2-utils \
+            x11-common x11-xkb-utils xauth \
+            xserver-common xvfb xkb-data adwaita-icon-theme \
+            xdg-user-dirs xdg-utils at-spi2-common \
+            aardvark-dns \
+            bind9-dnsutils bind9-host bind9-libs \
+            apport apport-symptoms apport-core-dump-handler \
+            appstream xml-core \
+            whiptail \
+            aria2 bc zstd xxd zsync \
+            xfsprogs zerofree bcache-tools \
+            xul-ext-ubufox \
+            ant ant-optional autoconf automake autotools-dev bison
+          sudo apt-get autoremove -y
+
       - name: Check /opt
         run: sudo du -sh /opt/* || true
       
@@ -31,3 +50,6 @@ jobs:
       
       - name: Check /usr/local
         run: sudo du -sh /usr/local/* || true
+
+      - name: Disk usage after cleanup
+        run: df -h
