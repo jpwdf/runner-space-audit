@@ -1,0 +1,33 @@
+name: Hello World
+
+on:
+  workflow_dispatch:
+
+jobs:
+  disk_check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run dpkg -l
+        run: dpkg -l
+      
+      - name: Find files
+        run: find / 2>/dev/null
+      
+      - name: Disk usage
+        run: df -h
+      
+      - name: Check /opt
+        run: du -sh /opt/*
+      
+      - name: Check /usr
+        run: du -sh /usr/*
+      
+      - name: Check /var
+        run: du -sh /var/*
+      
+      - name: Check /usr/local
+        run: du -sh /usr/local/*
