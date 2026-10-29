@@ -10,13 +10,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Run dpkg -l
-        run: dpkg -l
-      
-      - name: Find files
-        run: find / 2>/dev/null || true
-      
+
       - name: Disk usage
         run: df -h
 
@@ -25,9 +19,8 @@ jobs:
           sudo apt-get autoremove --purge -y \
             azure-cli azure-vm-utils walinuxagent \
             apache2 apache2-bin apache2-data apache2-utils \
-            x11-common x11-xkb-utils xauth \
-            xserver-common xvfb xkb-data adwaita-icon-theme \
-            xdg-user-dirs xdg-utils at-spi2-common \
+            adwaita-icon-theme \
+            at-spi2-common \
             aardvark-dns \
             apport apport-symptoms apport-core-dump-handler \
             appstream xml-core \
@@ -36,7 +29,13 @@ jobs:
             xfsprogs zerofree bcache-tools \
             xul-ext-ubufox \
             ant ant-optional bison
-
+      
+      - name: Run dpkg -l
+        run: dpkg -l
+      
+      - name: Find files
+        run: find / 2>/dev/null || true
+      
       - name: Check /opt
         run: sudo du -sh /opt/* || true
       
@@ -45,6 +44,9 @@ jobs:
       
       - name: Check /var
         run: sudo du -sh /var/* || true
+
+      - name: Check /var/lib
+        run: sudo du -sh /var/lib || true
       
       - name: Check /usr/local
         run: sudo du -sh /usr/local/* || true
