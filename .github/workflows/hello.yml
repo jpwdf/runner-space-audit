@@ -21,13 +21,13 @@ jobs:
         run: df -h
       
       - name: Check /opt
-        run: du -sh /opt/*
+        run: du -sh /opt/* || true
       
       - name: Check /usr
-        run: du -sh /usr/*
+        run: du -sh /usr/* || true
       
       - name: Check /var
-        run: du -sh /var/*
+        run: du -sh /var/* || true
       
       - name: Check /usr/local
-        run: du -sh /usr/local/*
+        run: du -sh /usr/local/* || true
