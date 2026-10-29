@@ -29,6 +29,7 @@ jobs:
             xfsprogs zerofree bcache-tools \
             xul-ext-ubufox \
             ant ant-optional bison
+          sudo rm -rf /opt/*
       
       - name: Run dpkg -l
         run: dpkg -l
